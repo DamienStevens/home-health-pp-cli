@@ -39,13 +39,3 @@ archives:
         formats: [zip]
 checksum:
   name_template: checksums.txt
-brews:
-  - name: home-health-pp-cli
-    repository:
-      owner: DamienStevens
-      name: homebrew-tap
-    homepage: "https://github.com/DamienStevens/home-health-pp-cli"
-    description: "Whole-home air-health dashboard aggregating AirThings, IQAir/AirVisual and MOCREO sensors into one local history, focused on mold and allergy monitoring."
-    install: |
-      bin.install "home-health-pp-cli"
-      bin.install "home-health-pp-mcp"
