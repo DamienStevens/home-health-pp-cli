@@ -1,0 +1,143 @@
+# .gitignore for a promoted *-pp-cli repo.
+# Drop this into the repo root in Phase 2 (merge with any existing .gitignore; keep the stricter rules).
+# Replace <cli> and <mcp> with the actual cmd/ directory names so the built binaries are ignored.
+#
+# Defense in depth: the CLI normally stores its token/config under ~/.config/home-health-pp-cli/ and its data under
+# ~/.local/share/home-health-pp-cli/ (OUTSIDE the repo). These patterns catch the case where a copy lands in the tree.
+# The real gate is scripts/pii_scan.py — this file is the upstream prevention layer.
+
+# ───────────────────────────── Secrets / credentials ─────────────────────────────
+config.toml
+credentials.toml
+*.credentials.toml
+.env
+.env.*
+.envrc
+*.pem
+*.key
+*_rsa
+*_dsa
+*_ed25519
+id_*
+*.p12
+*.pfx
+*.keystore
+*.jks
+.netrc
+secrets.*
+*-credentials*
+*.token
+agentcookie.local.toml
+
+# ───────────────────────────── Local data (PII / medical / personal) ─────────────
+# Never commit a database, dump, or captured API response — these hold personal records.
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.sqlite-shm
+*.sqlite-wal
+*.sql
+*.sql.gz
+*.dump
+*.bak
+data.db
+/captures/
+/live-samples/
+/discovery/
+*-capture.json
+*-export.json
+*labs*.json
+*results*.json
+*biomarker*.json
+
+# ───────────────────────────── Printing Press (local run artifacts) ──────────────
+/.manuscripts/
+manuscripts/
+/.runstate/
+/dogfood-results.json
+/workflow-verify-report.json
+/scorecard.json
+/.cache/
+
+# ───────────────────────────── Compiled binaries / build ─────────────────────────
+/home-health-pp-cli
+/home-health-pp-mcp
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+*.mcpb
+/build/
+/dist/
+/bin/
+
+# ───────────────────────────── Go ────────────────────────────────────────────────
+*.cover
+coverage.txt
+coverage.out
+coverage.html
+*.prof
+go.work
+go.work.sum
+vendor/
+
+# ───────────────────────────── macOS ──────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.DocumentRevisions-V100
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+Icon?
+
+# ───────────────────────────── Windows ────────────────────────────────────────────
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# ───────────────────────────── Linux ──────────────────────────────────────────────
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ───────────────────────────── Editors / IDEs ─────────────────────────────────────
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+*.swn
+*.tmp
+.*.un~
+Session.vim
+.netrwhist
+*.sublime-workspace
+*.sublime-project
+.history/
+.zed/
+
+# ───────────────────────────── Logs ───────────────────────────────────────────────
+*.log
+logs/
+npm-debug.log*
