@@ -6,63 +6,22 @@ Pulls AirThings (radon/VOC/mold), IQAir AirVisual (PM2.5/CO2/AQI) and MOCREO (ro
 
 ## Install
 
-The recommended path installs both the `home-health-pp-cli` binary and the `pp-home-health` agent skill (Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, and other agents supported by the upstream [`skills`](https://github.com/vercel-labs/skills) CLI) in one shot:
+> **macOS only.** Credentials live in the macOS login Keychain, and the CLI reads them via `/usr/bin/security`. The sensor adapters and Keychain integration are not portable to Linux or Windows.
+
+### With Go
+
+Installs both the CLI and the MCP server from source:
 
 ```bash
-npx -y @mvanhorn/printing-press-library install home-health
+go install github.com/DamienStevens/home-health-pp-cli/cmd/home-health-pp-cli@latest
+go install github.com/DamienStevens/home-health-pp-cli/cmd/home-health-pp-mcp@latest
 ```
 
-For CLI only (no skill):
-
-```bash
-npx -y @mvanhorn/printing-press-library install home-health --cli-only
-```
-
-For skill only — installs the skill into the same agents as the default command above, but skips the CLI binary (use this to update or reinstall just the skill):
-
-```bash
-npx -y @mvanhorn/printing-press-library install home-health --skill-only
-```
-
-To constrain the skill install to one or more specific agents (repeatable — agent names match the [`skills`](https://github.com/vercel-labs/skills) CLI):
-
-```bash
-npx -y @mvanhorn/printing-press-library install home-health --agent claude-code
-npx -y @mvanhorn/printing-press-library install home-health --agent claude-code --agent codex
-```
-
-### Without Node
-
-The generated install path is category-agnostic until this CLI is published. If `npx` is not available before publish, install Node or use the category-specific Go fallback from the public-library entry after publish.
+Make sure `$(go env GOPATH)/bin` is on your `PATH`.
 
 ### Pre-built binary
 
 Download a pre-built binary for your platform from the [latest release](https://github.com/DamienStevens/home-health-pp-cli/releases/latest). On macOS, clear the Gatekeeper quarantine: `xattr -d com.apple.quarantine <binary>`. On Unix, mark it executable: `chmod +x <binary>`.
-
-> **macOS only.** Credentials live in the macOS login Keychain, and the CLI reads them via `/usr/bin/security`. The sensor adapters and Keychain integration are not portable to Linux or Windows.
-
-<!-- pp-hermes-install-anchor -->
-## Install for Hermes
-
-From the Hermes CLI:
-
-```bash
-hermes skills install mvanhorn/printing-press-library/cli-skills/pp-home-health --force
-```
-
-Inside a Hermes chat session:
-
-```bash
-/skills install mvanhorn/printing-press-library/cli-skills/pp-home-health --force
-```
-
-## Install for OpenClaw
-
-Tell your OpenClaw agent (copy this):
-
-```
-Install the pp-home-health skill from https://github.com/mvanhorn/printing-press-library/tree/main/cli-skills/pp-home-health. The skill defines how its required CLI can be installed.
-```
 
 ## Use with Claude Desktop
 
