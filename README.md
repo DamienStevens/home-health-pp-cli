@@ -25,21 +25,7 @@ Download a pre-built binary for your platform from the [latest release](https://
 
 ## Use with Claude Desktop
 
-This CLI ships an [MCPB](https://github.com/modelcontextprotocol/mcpb) bundle — Claude Desktop's standard format for one-click MCP extension installs (no JSON config required).
-
-To install:
-
-1. Download the `.mcpb` for your platform from the [latest release](https://github.com/DamienStevens/home-health-pp-cli/releases/latest).
-2. Double-click the `.mcpb` file. Claude Desktop opens and walks you through the install.
-
-Requires Claude Desktop 1.0.0 or later. Pre-built bundles ship for macOS Apple Silicon (`darwin-arm64`); credentials are read from the Keychain, so the MCP server inherits whatever sources you configured for the CLI.
-
-<details>
-<summary>Manual JSON config (advanced)</summary>
-
-If you can't use the MCPB bundle (older Claude Desktop, unsupported platform), install the MCP binary and register it manually.
-
-Install the MCP binary from this CLI's published public-library entry or pre-built release.
+Install the `home-health-pp-mcp` binary (via the [Go install](#with-go) or [pre-built binary](#pre-built-binary) steps above), then register it with Claude Desktop.
 
 Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json`):
 
@@ -54,8 +40,6 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
 ```
 
 The MCP server reads the same macOS Keychain credentials the CLI uses; no env vars are required.
-
-</details>
 
 ## Setup
 
