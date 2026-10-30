@@ -23,7 +23,7 @@ import (
 )
 
 const (
-	baseURL = "https://website-api.airvisual.com/v1"
+	baseURL = "https://website-api.airvisual.com/v2"
 
 	// initialRate seeds the adaptive limiter. The web API tolerates a couple of
 	// requests per second; the limiter ramps up from here on sustained success.
