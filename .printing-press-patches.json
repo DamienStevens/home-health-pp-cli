@@ -1,7 +1,15 @@
 {
   "schema_version": 1,
-  "applied_at": "2026-05-29",
+  "applied_at": "2026-10-30",
   "base_run_id": "20260529-075801",
   "base_printing_press_version": "4.19.0",
-  "patches": []
+  "patches": [
+    {
+      "id": "iqair-api-v2",
+      "summary": "IQAir website API base URL moved from /v1 to /v2.",
+      "reason": "AirVisual retired /v1 (sign-in and devices return 404 since ~2026-07-13); /v2 serves the same request and response shapes.",
+      "files": ["internal/source/iqair/iqair.go"],
+      "validated_outcome": "Live 2026-10-30: v2 signin 200 with id+loginToken; v2 /users/{id}/devices 200 with the same current.{aqi,pm25,co2,humidity,temperature} shape."
+    }
+  ]
 }
